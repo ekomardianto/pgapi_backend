@@ -56,7 +56,21 @@ jobs:
           password: ${{ secrets.SERVER_PASSWORD }}
           port: ${{ secrets.SERVER_PORT }}
           script: |
-            whoami
-            docker stop ${{ vars.CONTAINER_NAME }} || true && docker rm ${{ vars.CONTAINER_NAME }} || true
-            docker pull ${{ vars.IMAGE_NAME }}
-            docker run -d -p 1213:1213 --name ${{ vars.CONTAINER_NAME }} ${{ vars.IMAGE_NAME }}
+            echo "Stopping and removing previous container..."
+            sudo docker stop ${{ secrets.CONTAINER_NAME }} || true && sudo docker rm ${{ secrets.CONTAINER_NAME }} || true
+            echo "Pulling the latest image..."
+            sudo docker pull ${{ secrets.IMAGE_NAME }}:latest
+            echo "Running the container..."
+            sudo docker run -d \
+              -p 1213:1213 \
+              --name pgapi_backend \
+              -e DB_HOST=${{ secrets.DB_HOST }} \
+              -e DB_PORT=${{ secrets.DB_PORT }} \
+              -e DB_USER=${{ secrets.DB_USER }} \
+              -e DB_PASS=${{ secrets.DB_PASS }} \
+              -e DB_NAME=${{ secrets.DB_NAME }} \
+              -e FRONTEND_URL=${{ secrets.FRONTEND_URL }} \
+              -e IPAY_API_KEY=${{ secrets.IPAY_API_KEY }} \
+              -e IPAY_VA=${{ secrets.IPAY_VA }} \
+              -e IPAY_URL=${{ secrets.IPAY_URL }} \
+              ${{ secrets.IMAGE_NAME }}:latest
