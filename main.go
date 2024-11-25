@@ -11,18 +11,17 @@ import (
 	"os"
 
 	"github.com/gorilla/mux"
-	"github.com/joho/godotenv"
 	"github.com/rs/cors"
 )
 
 func main() {
 	fmt.Println("selamat datang ekoo")
-	// Muat file .env
-	err := godotenv.Load()
-	if err != nil {
-		log.Fatal("Error loading .env file")
-	}
-	fmt.Println("load file env berhasil")
+	// // Muat file .env
+	// err := godotenv.Load()
+	// if err != nil {
+	// 	log.Fatal("Error loading .env file")
+	// }
+	// fmt.Println("load file env berhasil")
 	// script mendapatkan port
 	listener, err := net.Listen("tcp", ":0")
 	if err != nil {
@@ -73,5 +72,5 @@ func main() {
 		AllowCredentials: true,
 	})
 	handler := c.Handler(r)
-	http.ListenAndServe(":8080", handler)
+	http.ListenAndServe(":1213", handler)
 }
