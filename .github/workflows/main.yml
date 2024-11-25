@@ -26,7 +26,6 @@ jobs:
           IPAY_URL: ${{ secrets.IPAY_URL }}
         run: |
           echo "Environment variables set!"
-
       - name: Connect to DockerHub
         uses: docker/login-action@v2
         with:
@@ -57,7 +56,7 @@ jobs:
           password: ${{ secrets.SERVER_PASSWORD }}
           port: ${{ secrets.SERVER_PORT }}
           script: |
-  whoami
-  sudo docker stop ${{ vars.CONTAINER_NAME }} || true && sudo docker rm ${{ vars.CONTAINER_NAME }} || true
-  sudo docker pull ${{ vars.IMAGE_NAME }}
-  sudo docker run -d -p 1213:1213 --name ${{ vars.CONTAINER_NAME }} ${{ vars.IMAGE_NAME }}
+            whoami
+            docker stop ${{ vars.CONTAINER_NAME }} || true && docker rm ${{ vars.CONTAINER_NAME }} || true
+            docker pull ${{ vars.IMAGE_NAME }}
+            docker run -d -p 1213:1213 --name ${{ vars.CONTAINER_NAME }} ${{ vars.IMAGE_NAME }}
