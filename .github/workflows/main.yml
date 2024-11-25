@@ -57,20 +57,20 @@ jobs:
           port: ${{ secrets.SERVER_PORT }}
           script: |
             echo "Stopping and removing previous container..."
-            docker stop ${{ secrets.CONTAINER_NAME }} || true && docker rm ${{ secrets.CONTAINER_NAME }} || true
+            docker stop ${{ vars.CONTAINER_NAME }} || true && docker rm ${{ vars.CONTAINER_NAME }} || true
             echo "Pulling the latest image..."
-            docker pull ${{ secrets.IMAGE_NAME }}:latest
+            docker pull ${{ vars.IMAGE_NAME }}:latest
             echo "Running the container..."
             docker run -d \
               -p 1213:1213 \
-              --name ${{ secrets.CONTAINER_NAME }} \
+              --name ${{ vars.CONTAINER_NAME }} \
               -e DB_HOST=${{ secrets.DB_HOST }} \
               -e DB_PORT=${{ secrets.DB_PORT }} \
               -e DB_USER=${{ secrets.DB_USER }} \
               -e DB_PASS=${{ secrets.DB_PASS }} \
               -e DB_NAME=${{ secrets.DB_NAME }} \
-              -e FRONTEND_URL=${{ secrets.FRONTEND_URL }} \
+              -e FRONTEND_URL=${{ vars.FRONTEND_URL }} \
               -e IPAY_API_KEY=${{ secrets.IPAY_API_KEY }} \
               -e IPAY_VA=${{ secrets.IPAY_VA }} \
               -e IPAY_URL=${{ secrets.IPAY_URL }} \
-              ${{ secrets.IMAGE_NAME }}:latest
+              ${{ vars.IMAGE_NAME }}:latest
