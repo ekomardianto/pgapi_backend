@@ -57,7 +57,7 @@ jobs:
           password: ${{ secrets.SERVER_PASSWORD }}
           port: ${{ secrets.SERVER_PORT }}
           script: |
-            whoami
-            docker stop pgapi_backend || true && docker rm pgapi_backend || true
-            docker pull ${{ vars.IMAGE_NAME }}
-            docker run -d -p 1213:1213 --name ${{ vars.CONTAINER_NAME }} ${{ vars.IMAGE_NAME }}
+  whoami
+  sudo docker stop pgapi_backend || true && sudo docker rm pgapi_backend || true
+  sudo docker pull ${{ vars.IMAGE_NAME }}
+  sudo docker run -d -p 1213:1213 --name ${{ vars.CONTAINER_NAME }} ${{ vars.IMAGE_NAME }}

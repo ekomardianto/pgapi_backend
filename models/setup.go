@@ -20,10 +20,6 @@ func Upgrade(db *gorm.DB) error {
 		return err
 	}
 	//*** TRIGGER ***//
-	// Eksekusi Trigger CreateTriggerAddInstansiStokProduk
-	// if err := config.CreateTriggerAddInstansiStokProduk(db); err != nil {
-	// 	return err
-	// }
 
 	return nil
 }
