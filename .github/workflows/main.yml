@@ -58,6 +58,6 @@ jobs:
           port: ${{ secrets.SERVER_PORT }}
           script: |
   whoami
-  sudo docker stop pgapi_backend || true && sudo docker rm pgapi_backend || true
+  sudo docker stop ${{ vars.CONTAINER_NAME }} || true && sudo docker rm ${{ vars.CONTAINER_NAME }} || true
   sudo docker pull ${{ vars.IMAGE_NAME }}
   sudo docker run -d -p 1213:1213 --name ${{ vars.CONTAINER_NAME }} ${{ vars.IMAGE_NAME }}
