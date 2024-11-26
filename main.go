@@ -42,7 +42,7 @@ func main() {
 	api := r.PathPrefix("/api").Subrouter()
 	//Routing Auth
 	routes.AuthRoutes(r)
-
+	routes.HomeRoutes(r)
 	//routing CSRF
 	routes.CSRFRoutes(api)
 

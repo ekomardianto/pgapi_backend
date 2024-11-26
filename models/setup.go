@@ -38,7 +38,6 @@ func ConnectDatabase() {
 
 	//migrasikan seluruh model Tabel
 	if err := db.AutoMigrate(
-
 		&User{},
 		&RoleUser{},
 		&Instansi{},
