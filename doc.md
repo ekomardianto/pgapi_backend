@@ -10,3 +10,5 @@ gorm.io/driver/mysql -> **Untuk install driver mysql**
 
 Int64 to String strconv.Itoa(int(dataUser.RoleId))
 String to int strconv.ParseInt(vars["id"], 10, 64)
+
+redeploy
